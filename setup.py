@@ -53,7 +53,7 @@ install_requires = pip('install.pip')
 tests_require = pip('test.pip')
 
 setup(
-    name='udatalu',
+    name='ludata',
     version=__import__('udata').__version__,
     description=__import__('udata').__description__,
     long_description=long_description,
