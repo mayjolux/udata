@@ -82,7 +82,7 @@ def init_app(app, views=None):
 
     # Load core manifest
     with app.app_context():
-        assets.register_manifest('udata')
+        assets.register_manifest('ludata')
         for dist in entrypoints.get_plugins_dists(app, 'udata.views'):
             if assets.has_manifest(dist.project_name):
                 assets.register_manifest(dist.project_name)
