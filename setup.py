@@ -53,14 +53,14 @@ install_requires = pip('install.pip')
 tests_require = pip('test.pip')
 
 setup(
-    name='udata',
+    name='udatalu',
     version=__import__('udata').__version__,
     description=__import__('udata').__description__,
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/opendatateam/udata',
-    author='Opendata Team',
-    author_email='opendatateam@data.gouv.fr',
+    url='https://github.com/mayjolux/udata',
+    author='mayjolux',
+    author_email='joe.mayer@act.etat.lu',
     packages=find_packages(),
     include_package_data=True,
     python_requires='>=3.5',
