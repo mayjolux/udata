@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from werkzeug.datastructures import MultiDict
 
 from udata.forms import ModelForm, fields
@@ -21,7 +18,7 @@ class Fake(db.Document):
 
 class NestedForm(ModelForm):
     model_class = Nested
-    name = fields.StringField(validators=[fields.validators.required()])
+    name = fields.StringField(validators=[fields.validators.DataRequired()])
 
 
 class NestedFormWithId(NestedForm):

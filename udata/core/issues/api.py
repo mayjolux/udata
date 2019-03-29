@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from datetime import datetime
 
 from flask_security import current_user
@@ -117,7 +114,8 @@ class IssuesAPI(API):
     '''
     List all issues.
     '''
-    @api.doc('list_issues', parser=parser)
+    @api.doc('list_issues')
+    @api.expect(parser)
     @api.marshal_with(issue_page_fields)
     def get(self):
         '''List all Issues'''

@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from datetime import datetime
 
 from flask import request
@@ -12,6 +9,7 @@ from udata.models import Dataset
 from udata.utils import multi_to_dict
 
 from udata.core.badges import api as badges_api
+from udata.core.dataset.api_fields import dataset_ref_fields
 from udata.core.followers.api import FollowAPI
 from udata.core.storages.api import (
     uploaded_image_fields, image_parser, parse_uploaded_image
@@ -19,7 +17,7 @@ from udata.core.storages.api import (
 
 from .api_fields import (
     reuse_fields, reuse_page_fields, reuse_suggestion_fields,
-    reuse_type_fields, dataset_ref_fields
+    reuse_type_fields,
 )
 from .forms import ReuseForm
 from .models import Reuse, REUSE_TYPES
@@ -36,15 +34,17 @@ search_parser = ReuseSearch.as_request_parser()
 
 @ns.route('/', endpoint='reuses')
 class ReuseListAPI(API):
-    @api.doc('list_reuses', parser=search_parser)
+    @api.doc('list_reuses')
+    @api.expect(search_parser)
     @api.marshal_with(reuse_page_fields)
     def get(self):
         search_parser.parse_args()
         return search.query(ReuseSearch, **multi_to_dict(request.args))
 
     @api.secure
-    @api.doc('create_reuse', responses={400: 'Validation error'})
+    @api.doc('create_reuse')
     @api.expect(reuse_fields)
+    @api.response(400, 'Validation error')
     @api.marshal_with(reuse_fields)
     def post(self):
         '''Create a new object'''
@@ -183,8 +183,9 @@ suggest_parser.add_argument(
 
 @ns.route('/suggest/', endpoint='suggest_reuses')
 class SuggestReusesAPI(API):
+    @api.doc('suggest_reuses')
+    @api.expect(suggest_parser)
     @api.marshal_list_with(reuse_suggestion_fields)
-    @api.doc(id='suggest_reuses', parser=suggest_parser)
     def get(self):
         '''Suggest reuses'''
         args = suggest_parser.parse_args()

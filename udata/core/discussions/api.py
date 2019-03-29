@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from datetime import datetime
 
 from flask_security import current_user
@@ -138,7 +135,8 @@ class DiscussionsAPI(API):
     '''
     Base class for a list of discussions.
     '''
-    @api.doc('list_discussions', parser=parser)
+    @api.doc('list_discussions')
+    @api.expect(parser)
     @api.marshal_with(discussion_page_fields)
     def get(self):
         '''List all Discussions'''

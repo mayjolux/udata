@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from flask import url_for
 
 from udata.api import api, API
@@ -46,7 +43,7 @@ class JSONFormRequestTest(APITestCase):
             'Content-Type': 'multipart/form-data'
         })
         self.assert400(response)
-        self.assertEquals(
+        self.assertEqual(
             response.json,
             {'errors': {'Content-Type': 'expecting application/json'}}
         )

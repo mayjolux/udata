@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
-import StringIO
+from io import StringIO
 
 from datetime import datetime
 
@@ -49,12 +46,12 @@ class OrganizationBlueprintTest(FrontTestCase):
         self.assertNotIn(b'<meta name="robots" content="noindex, nofollow">',
                          response.data)
         json_ld = self.get_json_ld(response)
-        self.assertEquals(json_ld['@context'], 'http://schema.org')
-        self.assertEquals(json_ld['@type'], 'Organization')
-        self.assertEquals(json_ld['alternateName'], organization.slug)
-        self.assertEquals(json_ld['url'], 'http://local.test{}'.format(url))
-        self.assertEquals(json_ld['name'], organization.name)
-        self.assertEquals(json_ld['description'], 'Title 1 Title 2')
+        self.assertEqual(json_ld['@context'], 'http://schema.org')
+        self.assertEqual(json_ld['@type'], 'Organization')
+        self.assertEqual(json_ld['alternateName'], organization.slug)
+        self.assertEqual(json_ld['url'], 'http://local.test{}'.format(url))
+        self.assertEqual(json_ld['name'], organization.name)
+        self.assertEqual(json_ld['description'], 'Title 1 Title 2')
 
     def test_render_display_if_deleted(self):
         '''It should not render the organization page if deleted'''
@@ -200,9 +197,9 @@ class OrganizationBlueprintTest(FrontTestCase):
         self.assertEqual(response.mimetype, 'text/csv')
         self.assertEqual(response.charset, 'utf-8')
 
-        csvfile = StringIO.StringIO(response.data)
-        reader = reader = csv.get_reader(csvfile)
-        header = reader.next()
+        csvfile = StringIO(response.data.decode('utf-8'))
+        reader = csv.get_reader(csvfile)
+        header = next(reader)
 
         self.assertEqual(header[0], 'id')
         self.assertIn('title', header)
@@ -241,9 +238,9 @@ class OrganizationBlueprintTest(FrontTestCase):
         self.assertEqual(response.mimetype, 'text/csv')
         self.assertEqual(response.charset, 'utf-8')
 
-        csvfile = StringIO.StringIO(response.data)
-        reader = reader = csv.get_reader(csvfile)
-        header = reader.next()
+        csvfile = StringIO(response.data.decode('utf-8'))
+        reader = csv.get_reader(csvfile)
+        header = next(reader)
 
         self.assertEqual(header[0], 'dataset.id')
         self.assertIn('dataset.title', header)

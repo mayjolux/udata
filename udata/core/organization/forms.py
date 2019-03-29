@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from udata.auth import current_user
 from udata.forms import Form, ModelForm, fields, validators
 from udata.i18n import lazy_gettext as _
@@ -20,11 +17,11 @@ __all__ = (
 class OrganizationForm(ModelForm):
     model_class = Organization
 
-    name = fields.StringField(_('Name'), [validators.required()])
+    name = fields.StringField(_('Name'), [validators.DataRequired()])
     acronym = fields.StringField(
         _('Acronym'), description=_('Shorter organization name'))
     description = fields.MarkdownField(
-        _('Description'), [validators.required()],
+        _('Description'), [validators.DataRequired()],
         description=_('The details about your organization'))
     url = fields.URLField(
         _('Website'), description=_('The organization website URL'))
@@ -52,16 +49,16 @@ class MembershipRequestForm(ModelForm):
     model_class = MembershipRequest
 
     user = fields.CurrentUserField()
-    comment = fields.StringField(_('Comment'), [validators.required()])
+    comment = fields.StringField(_('Comment'), [validators.DataRequired()])
 
 
 class MembershipRefuseForm(Form):
-    comment = fields.StringField(_('Comment'), [validators.required()])
+    comment = fields.StringField(_('Comment'), [validators.DataRequired()])
 
 
 class MemberForm(ModelForm):
     model_class = Member
 
     role = fields.SelectField(
-        _('Role'), default='editor', choices=ORG_ROLES.items(),
-        validators=[validators.required()])
+        _('Role'), default='editor', choices=list(ORG_ROLES.items()),
+        validators=[validators.DataRequired()])

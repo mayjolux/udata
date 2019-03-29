@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import json
 import logging
 from collections import Counter
-from urlparse import urlparse
+from urllib.parse import urlparse
 
 import click
 import redis
@@ -52,7 +49,7 @@ def status_print_config(queue):
     if not tasks:
         registered = inspect().registered_tasks()
         if registered:
-            for w, tasks_list in registered.iteritems():
+            for w, tasks_list in registered.items():
                 tasks += [t for t in tasks_list if t not in tasks]
             cache.set(TASKS_LIST_CACHE_KEY, tasks,
                       timeout=TASKS_LIST_CACHE_DURATION)

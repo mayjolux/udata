@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from flask import request, redirect, abort, g, json
 from flask.views import MethodView
 

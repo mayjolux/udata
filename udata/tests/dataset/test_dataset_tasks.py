@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from .. import TestCase, DBTestMixin
 
 from udata.models import Dataset, Topic

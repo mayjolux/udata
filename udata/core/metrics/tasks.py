@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from datetime import date, timedelta
 
 from celery.utils.log import get_task_logger

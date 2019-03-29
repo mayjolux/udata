@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import mock
 
 from datetime import date, timedelta
@@ -12,7 +9,7 @@ from udata.tests import TestCase, DBTestMixin
 
 class FakeModel(WithMetrics, db.Document):
 
-    def __unicode__(self):
+    def __str__(self):
         return ''
 
 

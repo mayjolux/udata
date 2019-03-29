@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals, print_function
-
 import logging
 import traceback
 
@@ -27,8 +24,7 @@ requests.packages.urllib3.disable_warnings()
 class HarvestFilter(object):
     TYPES = {
         str: 'string',
-        unicode: 'string',
-        basestring: 'string',
+        bytes: 'string',
         int: 'integer',
         bool: 'boolean',
         UUID: 'uuid',

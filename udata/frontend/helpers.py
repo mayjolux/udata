@@ -1,15 +1,12 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import calendar
 import logging
 import pkg_resources
 
 from datetime import date, datetime
 from time import time
-from urlparse import urlsplit, urlunsplit
+from urllib.parse import urlsplit, urlunsplit
 
-from babel.numbers import format_number as format_number_babel
+from babel.numbers import format_decimal
 from flask import g, url_for, request, current_app, json
 from jinja2 import Markup, contextfilter
 from werkzeug import url_decode, url_encode
@@ -109,8 +106,8 @@ def url_del(url=None, *args, **kwargs):
         params.poplist(key)
     for key, value in kwargs.items():
         lst = params.poplist(key)
-        if unicode(value) in lst:
-            lst.remove(unicode(value))
+        if str(value) in lst:
+            lst.remove(str(value))
         params.setlist(key, lst)
     return Markup(urlunsplit((scheme, netloc, path, url_encode(params),
                               fragments)))
@@ -392,7 +389,7 @@ def to_json(data):
 @front.app_template_global()
 def format_number(number):
     '''A locale aware formatter.'''
-    return format_number_babel(number, locale=g.lang_code)
+    return format_decimal(number, locale=g.lang_code)
 
 
 @front.app_template_filter()

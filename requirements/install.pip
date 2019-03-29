@@ -28,12 +28,11 @@ Flask==1.0.2
 html2text==2018.1.9
 lxml==4.3.3
 mongoengine==0.16.3
-msgpack-python==0.4.8
+msgpack==0.5.6
 netaddr==0.7.19
 bcrypt==3.1.6
 pillow==5.4.1
 pydenticon==0.3.1
-pyliblzma==0.5.3
 python-dateutil==2.8.0
 pytz==2018.9
 PyYAML==5.1
@@ -43,7 +42,6 @@ redis==2.10.6 # this can be safely upgraded back to 3.1.0 as soon as celery 4.2.
 requests==2.21.0
 StringDist==1.0.9
 tlds
-unicodecsv==0.14.1
 ujson==1.35
 voluptuous==0.10.5
 werkzeug==0.14.1

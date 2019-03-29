@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
-
 from udata.models import db, Metrics, WithMetrics, Site
 from udata.core.site.metrics import SiteMetric
 from udata.tests import TestCase, DBTestMixin
@@ -9,7 +5,7 @@ from udata.tests import TestCase, DBTestMixin
 
 class FakeModel(WithMetrics, db.Document):
 
-    def __unicode__(self):
+    def __str__(self):
         return ''
 
 

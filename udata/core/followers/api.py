@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from datetime import datetime
 
 from flask import current_app, request
@@ -42,7 +39,7 @@ class FollowAPI(API):
     '''
     model = None
 
-    @api.doc(parser=parser)
+    @api.expect(parser)
     @api.marshal_with(follow_page_fields)
     def get(self, id):
         '''List all followers for a given object'''

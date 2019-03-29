@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from datetime import date
 
 from flask import url_for
@@ -20,7 +17,7 @@ from udata.tests.api import APITestCase
 class FakeModel(db.Document, WithMetrics):
     name = db.StringField()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name or ''
 
 

@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from udata.forms import ModelForm, fields, validators, widgets
 from udata.i18n import lazy_gettext as _
 
@@ -15,9 +12,9 @@ class PostForm(ModelForm):
 
     owner = fields.CurrentUserField()
 
-    name = fields.StringField(_('Name'), [validators.required()])
+    name = fields.StringField(_('Name'), [validators.DataRequired()])
     headline = fields.StringField(_('Headline'), widget=widgets.TextArea())
-    content = fields.MarkdownField(_('Content'), [validators.required()])
+    content = fields.MarkdownField(_('Content'), [validators.DataRequired()])
 
     datasets = fields.DatasetListField(_('Associated datasets'))
     reuses = fields.ReuseListField(_('Associated reuses'))

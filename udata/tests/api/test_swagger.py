@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import json
 
 from flask import url_for
@@ -22,4 +19,8 @@ class SwaggerBlueprintTest:
 
     def test_swagger_specs_validate(self, api):
         response = api.get(url_for('api.specs'))
-        schemas.validate(response.json)
+        try:
+            schemas.validate(response.json)
+        except schemas.SchemaValidationError as e:
+            print(e.errors)
+            raise

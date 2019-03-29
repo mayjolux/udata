@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 # from celery.utils.log import get_task_logger
 from udata.tasks import celery
 

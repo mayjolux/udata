@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import bson
 import datetime
 import logging
@@ -116,7 +113,7 @@ class UDataJsonEncoder(json.JSONEncoder):
     '''
     def default(self, obj):
         if is_lazy_string(obj):
-            return unicode(obj)
+            return str(obj)
         elif isinstance(obj, bson.objectid.ObjectId):
             return str(obj)
         elif isinstance(obj, datetime.datetime):

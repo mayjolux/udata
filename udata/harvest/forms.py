@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from udata.utils import safe_unicode
 from udata.forms import Form, fields, validators
 from udata.i18n import lazy_gettext as _
@@ -41,7 +38,7 @@ class HarvestConfigField(fields.DictField):
                     msg = msg.format(f['key'], backend.name)
                     raise validators.ValidationError(msg)
 
-                if isinstance(f['value'], basestring):
+                if isinstance(f['value'], str):
                     f['value'] = safe_unicode(f['value'])  # Fix encoding error
 
                 if not isinstance(f['value'], specs.type):
@@ -60,11 +57,11 @@ class HarvestConfigField(fields.DictField):
 
 
 class HarvestSourceForm(Form):
-    name = fields.StringField(_('Name'), [validators.required()])
+    name = fields.StringField(_('Name'), [validators.DataRequired()])
     description = fields.MarkdownField(
         _('Description'),
         description=_('Some optional details about this harvester'))
-    url = fields.URLField(_('URL'), [validators.required()])
+    url = fields.URLField(_('URL'), [validators.DataRequired()])
     backend = fields.SelectField(_('Backend'), choices=lambda: [
         (b.name, b.display_name) for b in list_backends()
     ])
@@ -75,7 +72,7 @@ class HarvestSourceForm(Form):
 
 
 class HarvestSourceValidationForm(Form):
-    state = fields.SelectField(choices=VALIDATION_STATES.items())
+    state = fields.SelectField(choices=list(VALIDATION_STATES.items()))
     comment = fields.StringField(_('Comment'),
                                  [validators.RequiredIfVal('state',
                                                            VALIDATION_REFUSED

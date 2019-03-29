@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals, absolute_import
-
 import codecs
 import itertools
 import json
@@ -46,8 +43,8 @@ def update(ctx, migrate=False):
         msg += ' and migrate data'
     header(msg)
     info('Updating Python dependencies')
-    lrun('pip install -r requirements/develop.pip')
-    lrun('pip install -e .')
+    lrun('pip3 install -r requirements/develop.pip')
+    lrun('pip3 install -e .')
     info('Updating JavaScript dependencies')
     lrun('npm install')
     if migrate:
